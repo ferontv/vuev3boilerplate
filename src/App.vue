@@ -1,15 +1,9 @@
 <template>
   <div id="app">
     <input v-model="name">
-    <input v-model="lastName">
-    <p>{{fullName }}</p>
-    <div class="field">
-      <label class="label">Fecha de nacimiento</label>
-      <div class="control">
-        <input class="input" v-model="birthday" type="date">
-      </div>
-    </div>
-    <p>{{age}}</p>
+    <!-- <button v-on:click="format">Format</button> -->
+    <button @click="format">Format</button>
+    <p>{{formattedName}}</p>
   </div>
 </template>
 
@@ -19,23 +13,15 @@ export default {
   data() {
     return {
       name: "",
-      lastName: "",
-      birthday: ""
+      formattedName: ""
     };
   },
-  computed: {
-    fullName() {
-      return `${this.name} ${this.lastName}`;
-    },
-    age() {
-      return (
-        new Date(new Date() - new Date(this.birthday)).getUTCFullYear() - 1970
-      );
-    }
-  },
-  watch: {
-    name(newVal, oldVal) {
-      console.log(newVal, oldVal);
+  methods: {
+    format() {
+      this.formattedName = this.name
+        .split(" ")
+        .join("-")
+        .toUpperCase();
     }
   }
 };
