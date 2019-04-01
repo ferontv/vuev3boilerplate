@@ -1,14 +1,10 @@
 <template>
   <div id="app">
-    <!-- ocultado -->
-    <p v-show="showValue">{{value}}</p>
-    <!-- eliminado del dom -->
-    <p v-if="showValue">{{value}}</p>
-    <p v-else-if="false">{{ 'algo mas' }}</p>
-    <p v-else>{{ 'lo ultimo' }}</p>
-    <ul>
-      <li :key="i" v-for="i in items">{{ i }}</li>
-    </ul>
+    <input v-model="name">
+    <p>{{name}}</p>
+    <!-- <a v-bind:href="url">Link</a> -->
+    <!-- igual a: -->
+    <a :href="url">Link</a>
   </div>
 </template>
 
@@ -17,12 +13,8 @@ export default {
   name: "app",
   data() {
     return {
-      msg: "Hola Vue!",
-
-      showValue: false,
-      value: "Algo",
-
-      items: [1, 2, 3, 4, 5]
+      name: "",
+      url: "https;//google.com"
     };
   }
 };
