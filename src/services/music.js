@@ -1,5 +1,8 @@
-const configService = {
-  apiUrl: 'http://platzi-music.now.sh',
+import axios from 'axios';
+import configService from './config';
+
+const musicService = () => {
+  axios.get(configService.apiUrl);
 };
 
-export default configService;
+export default musicService;
