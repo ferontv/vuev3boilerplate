@@ -32,6 +32,11 @@ export default {
         new Date(new Date() - new Date(this.birthday)).getUTCFullYear() - 1970
       );
     }
+  },
+  watch: {
+    name(newVal, oldVal) {
+      console.log(newVal, oldVal);
+    }
   }
 };
 </script>
