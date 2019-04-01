@@ -19,16 +19,18 @@
               <a class="button is-danger is-large">&times;</a>
             </div>
           </div>
-          <p class="help is-info has-text-right">
-            <small>{{ searchMessage }}</small>
-          </p>
         </div>
       </nav>
+      <div class="container">
+        <p class="help is-info has-text-right">
+          <small>{{ searchMessage }}</small>
+        </p>
+      </div>
       <div class="container results">
         <div class="columns">
           <div class="column">
-            <ul :key="t.name" v-for="t in tracks">
-              <li class="row">{{ t.name }} - {{ t.artist }}</li>
+            <ul :key="t.id" v-for="t in tracks">
+              <li class="row">{{ t.name }} - {{ t.artists[0].name }}</li>
             </ul>
           </div>
         </div>
@@ -38,11 +40,7 @@
 </template>
 
 <script>
-const tracks = [
-  { name: "Muchacha", artist: "Luis Alberto Spinetta" },
-  { name: "Hoy aca en el baile", artist: "El pepo" },
-  { name: "I was made fro loving you", artist: "Kiss" }
-];
+import trackService from "./services/track";
 
 export default {
   name: "app",
@@ -59,8 +57,12 @@ export default {
   },
   methods: {
     search() {
-      // console.log(this.searchQuery);
-      this.tracks = tracks;
+      if (!this.searchQuery) {
+        return;
+      }
+      trackService.search(this.searchQuery).then(res => {
+        this.tracks = res.tracks.items;
+      });
     }
   }
 };
