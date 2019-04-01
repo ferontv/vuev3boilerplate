@@ -1,10 +1,15 @@
 <template>
   <div id="app">
     <input v-model="name">
-    <p>{{name}}</p>
-    <!-- <a v-bind:href="url">Link</a> -->
-    <!-- igual a: -->
-    <a :href="url">Link</a>
+    <input v-model="lastName">
+    <p>{{fullName }}</p>
+    <div class="field">
+      <label class="label">Fecha de nacimiento</label>
+      <div class="control">
+        <input class="input" v-model="birthday" type="date">
+      </div>
+    </div>
+    <p>{{age}}</p>
   </div>
 </template>
 
@@ -14,8 +19,19 @@ export default {
   data() {
     return {
       name: "",
-      url: "https;//google.com"
+      lastName: "",
+      birthday: ""
     };
+  },
+  computed: {
+    fullName() {
+      return `${this.name} ${this.lastName}`;
+    },
+    age() {
+      return (
+        new Date(new Date() - new Date(this.birthday)).getUTCFullYear() - 1970
+      );
+    }
   }
 };
 </script>
