@@ -1,25 +1,30 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <h1>{{msg}}</h1>
+    <h1>{{ msg }}</h1>
+    <p>{{ 1 + 1 }}</p>
+    <p>{{ 'Hola' + 'Mundo' }}</p>
+    <p>{{ person.name }}</p>
+    <p>{{ person.name.toUpperCase() }}</p>
+    <p>{{ JSON.stringify(person) }}</p>
+    <p>{{ true ? 'true' : 'false' }}</p>
   </div>
 </template>
 
 <script>
-import HelloWorld from "./components/HelloWorld.vue";
-
 export default {
   name: "app",
-  components: {
-    HelloWorld
-  },
   data() {
     return {
-      msg: "Hola Vue"
+      msg: "Hola Vue!",
+
+      person: {
+        name: "Juan"
+      }
     };
   }
 };
 </script>
 
 <style lang="scss">
+@import "./scss/main.scss";
 </style>
