@@ -1,12 +1,14 @@
 <template>
   <div id="app">
-    <h1>{{ msg }}</h1>
-    <p>{{ 1 + 1 }}</p>
-    <p>{{ 'Hola' + 'Mundo' }}</p>
-    <p>{{ person.name }}</p>
-    <p>{{ person.name.toUpperCase() }}</p>
-    <p>{{ JSON.stringify(person) }}</p>
-    <p>{{ true ? 'true' : 'false' }}</p>
+    <!-- ocultado -->
+    <p v-show="showValue">{{value}}</p>
+    <!-- eliminado del dom -->
+    <p v-if="showValue">{{value}}</p>
+    <p v-else-if="false">{{ 'algo mas' }}</p>
+    <p v-else>{{ 'lo ultimo' }}</p>
+    <ul>
+      <li :key="i" v-for="i in items">{{ i }}</li>
+    </ul>
   </div>
 </template>
 
@@ -17,9 +19,10 @@ export default {
     return {
       msg: "Hola Vue!",
 
-      person: {
-        name: "Juan"
-      }
+      showValue: false,
+      value: "Algo",
+
+      items: [1, 2, 3, 4, 5]
     };
   }
 };
